@@ -1,0 +1,23 @@
+{
+  "name": "webpack-starter",
+  "version": "1.0.0",
+  "description": "Webpack project starter",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch", 
+    "prod": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Citcatjoe/ihatetomatoes-webpack101.git"
+  },
+  "author": "César Greppin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Citcatjoe/ihatetomatoes-webpack101/issues"
+  },
+  "homepage": "https://github.com/Citcatjoe/ihatetomatoes-webpack101#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}
