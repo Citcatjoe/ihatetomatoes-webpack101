@@ -8,5 +8,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'), 
         filename: 'app.bundle.js'
     },
-    plugins: [new HtmlWebpackPlugin()]
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Project title here',
+            minify: {
+                collapseWhitespace: true
+            },
+            hash: true,
+            template: './src/index.ejs'
+        })
+    ]
 }

@@ -23,4 +23,9 @@
 - plugins: [new HtmlWebpackPlugin()] dans le même fichier pour inclure les plugins
 - A partir d'ici, on casse le string d'output car le plugin d'HTML ne sera pas le seul plugin ni language.
 - path: path.resolve(__dirname, 'dist'), car path: 'dist' provoquait un bug
-- npm run dev créé donc également un fichier index-html
+- npm run dev créé donc également un fichier index.html
+- ctrl-c pour stopper le processus
+- Dans webpack.config.js, ajout de quelques paramètres de config .js pour la génération de index.html 
+(https://github.com/jantimon/html-webpack-plugin)
+
+---------------------------------------------------------------------------------------------------
