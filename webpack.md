@@ -29,3 +29,31 @@
 (https://github.com/jantimon/html-webpack-plugin)
 
 ---------------------------------------------------------------------------------------------------
+
+INSTALLATION DES LOADERS CSS/SASS
+- npm i css-loader --save-dev (on créé alors app.css manuellement dans src)
+- Dans webpack.config.js
+module: {
+    rules: [
+        {test: /\.css$/, use: 'css-loader'}
+    ]
+},
+- const css = require('./app.css');    dans src/app.js
+- A ce stade, le css est inclus dans le .js et n'est donc pas interpreté par le browser. Il va falloir installer un autre loader.
+- npm i style-loader --save-dev
+- Dans webpack.config.js, on modifie la rule en
+module: {
+    rules: [
+        {test: /\.css$/, use: ['style-loader','css-loader']}
+    ]
+},
+- Sauf que le css est injecté dans une balise style dans le head. Pas terrible
+- Bref, pour le moment on va installer le loader sass avec npm i sass-loader node-sass --save-dev et l'ajouter a webpack.config.js
+- Dans webpack.config.js, on stipule scss à la place de css dans la rule
+- On renomme src/app.css en src/app.scss
+- Dans src/app.js on renomme le require en const css = require('./app.scss');
+- Afin de générer le .css dans un fichier à part, on va installer extract-text-webpack-plugin
+- npm i extract-text-webpack-plugin --save-dev
+- const ExtractTextPlugin = require("extract-text-webpack-plugin"); en haut de webpack.config.js
+- on wrap les loaders dans ExtractTextPlugin.extract()
+- Dans webpack.config.js, à la fin du tableau plugins new ExtractTextPlugin("app.css")
