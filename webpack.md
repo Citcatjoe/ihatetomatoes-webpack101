@@ -52,8 +52,38 @@ module: {
 - Dans webpack.config.js, on stipule scss à la place de css dans la rule
 - On renomme src/app.css en src/app.scss
 - Dans src/app.js on renomme le require en const css = require('./app.scss');
+
 - Afin de générer le .css dans un fichier à part, on va installer extract-text-webpack-plugin
 - npm i extract-text-webpack-plugin --save-dev
+- PROBLEME ICI JAI DU INSTALLER UNE AUTRE VERSION DU PLUGIN DEPUIS LA PAGE:
+# for webpack 2 
+npm install --save-dev extract-text-webpack-plugin@2.1.2
 - const ExtractTextPlugin = require("extract-text-webpack-plugin"); en haut de webpack.config.js
-- on wrap les loaders dans ExtractTextPlugin.extract()
-- Dans webpack.config.js, à la fin du tableau plugins new ExtractTextPlugin("app.css")
+- Dans webpack.config.js, la bonne syntaxe pour cette version de webpack est:
+module: {
+    rules: [
+        {
+            test: /\.scss$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: ['css-loader', 'sass-loader'],
+                publicPath: '/dist'
+            })
+        }
+    ]
+},
+- Et après le tableau des plugins:
+new ExtractTextPlugin({
+    filename: 'app.css',
+    disable: false,
+    allChunks: true
+})
+
+---------------------------------------------------------------------------------------------------
+
+# INSTALLATION DE WEBPACK DEV SERVER
+
+- npm i webpack-dev-server -D 
+- Mettre webpack et webpack-dev-server en 2.2.0 comme sur le tuto de Petr. Pas réussi avec des version différentes
+- 'npm i webpack@2.2.0 -D' et 'npm i webpack-dev-server@2.2.0 -D'
+- Dans package.json, on remplace "dev": "webpack -d --watch" par "webpack-dev-server"
